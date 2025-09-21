@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الغزوات والسرايا - موقع نور الهداية</title>
+    <meta name="description" content="استكشف غزوات الرسول ﷺ والأحداث المهمة في تاريخ الدعوة الإسلامية">
+    
+    <!-- خطوط Google Fonts العربية -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- ملف التصميم الخاص -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'amiri': ['Amiri', 'serif'],
+                        'tajawal': ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-tajawal bg-gradient-to-br from-slate-50 to-amber-50 dark:from-slate-900 dark:to-amber-900 min-h-screen transition-colors duration-300">
+    
+    <!-- شريط التنقل العلوي -->
+    <nav class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md shadow-lg sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- الشعار -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
+                        <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-mosque text-white text-lg"></i>
+                        </div>
+                        <span class="font-amiri text-xl font-bold text-slate-800 dark:text-white">نور الهداية</span>
+                    </a>
+                </div>
+                
+                <!-- قائمة التنقل الرئيسية -->
+                <div class="hidden md:flex space-x-6 space-x-reverse">
+                    <a href="index.html" class="nav-link text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 px-3 py-2 rounded-md font-medium transition-colors duration-200">الرئيسية</a>
+                    <a href="prophets.html" class="nav-link text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 px-3 py-2 rounded-md font-medium transition-colors duration-200">قصص الأنبياء</a>
+                    <a href="seerah.html" class="nav-link text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 px-3 py-2 rounded-md font-medium transition-colors duration-200">السيرة النبوية</a>
+                    <a href="battles.html" class="nav-link text-amber-600 dark:text-amber-400 px-3 py-2 rounded-md font-medium transition-colors duration-200">الغزوات</a>
+                    <a href="companions.html" class="nav-link text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 px-3 py-2 rounded-md font-medium transition-colors duration-200">الصحابة</a>
+                    <a href="children.html" class="nav-link text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 px-3 py-2 rounded-md font-medium transition-colors duration-200">للأطفال</a>
+                </div>
+                
+                <!-- الأزرار الجانبية -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <button id="darkModeToggle" class="p-2 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors duration-200">
+                        <i class="fas fa-moon dark:hidden text-lg"></i>
+                        <i class="fas fa-sun hidden dark:inline text-lg"></i>
+                    </button>
+                    <button id="searchToggle" class="p-2 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors duration-200">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- شريط البحث -->
+    <div id="searchBar" class="bg-white dark:bg-slate-800 shadow-lg border-t border-slate-200 dark:border-slate-700 hidden">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="flex-1">
+                    <input type="text" 
+                           id="searchInput" 
+                           placeholder="ابحث عن غزوة أو معركة معينة..."
+                           class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200">
+                </div>
+                <button onclick="performSearch()" class="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors duration-200">
+                    <i class="fas fa-search ml-2"></i>
+                    بحث
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- القسم الرئيسي -->
+    <main class="py-8 px-4">
+        
+        <!-- عنوان الصفحة -->
+        <div class="max-w-7xl mx-auto text-center mb-12">
+            <div class="flex justify-center mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center text-white text-4xl">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+            </div>
+            <h1 class="font-amiri text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-4">
+                الغزوات والسرايا النبوية
+            </h1>
+            <p class="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                استكشف غزوات الرسول ﷺ والأحداث المهمة في تاريخ الدعوة الإسلامية والدروس المستفادة منها
+            </p>
+        </div>
+
+        <!-- فلتر الغزوات -->
+        <div class="max-w-7xl mx-auto mb-8">
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="filterBattles('all')" class="filter-btn active px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-amber-600 text-white">
+                    جميع الغزوات
+                </button>
+                <button onclick="filterBattles('major')" class="filter-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-amber-100 dark:hover:bg-amber-800">
+                    الغزوات الكبرى
+                </button>
+                <button onclick="filterBattles('mecca')" class="filter-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-amber-100 dark:hover:bg-amber-800">
+                    فترة مكة
+                </button>
+                <button onclick="filterBattles('medina')" class="filter-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-amber-100 dark:hover:bg-amber-800">
+                    فترة المدينة
+                </button>
+            </div>
+        </div>
+
+        <!-- شبكة الغزوات -->
+        <div class="max-w-7xl mx-auto">
+            <div id="battlesGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- سيتم ملء المحتوى عبر JavaScript -->
+            </div>
+        </div>
+
+        <!-- حالة التحميل -->
+        <div id="loadingState" class="text-center py-16">
+            <div class="inline-flex items-center space-x-2 space-x-reverse">
+                <i class="fas fa-spinner fa-spin text-amber-600 text-2xl"></i>
+                <span class="text-slate-600 dark:text-slate-300">جاري تحميل الغزوات...</span>
+            </div>
+        </div>
+
+        <!-- حالة عدم وجود نتائج -->
+        <div id="noResults" class="text-center py-16 hidden">
+            <div class="text-slate-400 dark:text-slate-500">
+                <i class="fas fa-search text-6xl mb-4"></i>
+                <h3 class="text-xl font-medium mb-2">لا توجد نتائج</h3>
+                <p>لم يتم العثور على أي نتائج مطابقة لبحثك</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- نافذة تفاصيل الغزوة -->
+    <div id="battleModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black bg-opacity-50 backdrop-blur-sm">
+        <div class="flex min-h-screen items-center justify-center p-4">
+            <div class="modal-content bg-white dark:bg-slate-800 rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+                <!-- رأس النافذة -->
+                <div class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700">
+                    <h2 id="modalTitle" class="font-amiri text-2xl font-bold text-slate-800 dark:text-white"></h2>
+                    <button onclick="closeModal()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-200">
+                        <i class="fas fa-times text-slate-500 dark:text-slate-400"></i>
+                    </button>
+                </div>
+                
+                <!-- محتوى النافذة -->
+                <div class="p-6">
+                    <div id="modalContent">
+                        <!-- سيتم ملء المحتوى عبر JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- التذييل -->
+    <footer class="bg-slate-900 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-3 space-x-reverse mb-6">
+                <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-mosque text-white text-xl"></i>
+                </div>
+                <span class="font-amiri text-2xl font-bold">نور الهداية</span>
+            </div>
+            <p class="text-slate-300 mb-6">
+                موقع متخصص في قصص الأنبياء والسيرة النبوية يهدف إلى نشر التراث الإسلامي الأصيل
+            </p>
+            <div class="flex justify-center space-x-6 space-x-reverse">
+                <a href="index.html" class="hover:text-amber-400 transition-colors duration-200">الرئيسية</a>
+                <a href="prophets.html" class="hover:text-amber-400 transition-colors duration-200">قصص الأنبياء</a>
+                <a href="seerah.html" class="hover:text-amber-400 transition-colors duration-200">السيرة النبوية</a>
+                <a href="companions.html" class="hover:text-amber-400 transition-colors duration-200">الصحابة</a>
+            </div>
+            <div class="border-t border-slate-700 mt-8 pt-6 text-slate-400">
+                <p>&copy; 2024 نور الهداية - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ملفات JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/battles.js"></script>
+</body>
+</html>
